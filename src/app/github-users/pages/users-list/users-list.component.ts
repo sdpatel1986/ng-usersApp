@@ -19,7 +19,7 @@ export class UsersListComponent implements OnInit {
     private fb: FormBuilder) {
     this.searchControl = this.fb.control('');
   }
-  ngOnInit() {
+  ngOnInit(): void {
     this.users$ = this.userService.getSpecificNumberOfUsers(1000)
       .pipe(tap(users => {
         this.search = this.memoizedSearchFunc();
@@ -29,9 +29,9 @@ export class UsersListComponent implements OnInit {
       }));
 
   }
-  searchMethod(users: any[], searchValue: string) {
-    const lowerCaseValue = searchValue.toLocaleLowerCase();
-    const searchFragments = lowerCaseValue.split(' ').length > 0 ? lowerCaseValue.split(' ') : [lowerCaseValue];
+  searchMethod(users: any[], searchValue: string): any[] {
+    const lowerCaseValue: string = searchValue.toLocaleLowerCase();
+    const searchFragments: string[] = lowerCaseValue.split(' ').length > 0 ? lowerCaseValue.split(' ') : [lowerCaseValue];
     return users.filter(x => searchFragments.every(y => x.login.toLocaleLowerCase().includes(y)));
   }
 

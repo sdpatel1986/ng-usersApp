@@ -12,7 +12,7 @@ export type getUsersFunc = (startingUserId: number, noUserPerPage: number) => Ob
 //RXJS custom Operator
 export const getUsersByCount = (requiredNoOfUsers: number, getUsersFunc: getUsersFunc) => (source: Observable<User[]>) =>
   source.pipe(mergeMap((cr: User[]) => {
-    let currentItemsLength = cr.length;
+    let currentItemsLength: number = cr.length;
     if (currentItemsLength < requiredNoOfUsers) {
       return getUsersFunc(currentItemsLength - 1, requiredNoOfUsers - currentItemsLength < 100 ?
         requiredNoOfUsers - currentItemsLength : 100).pipe(map(nr => cr.concat(nr)))

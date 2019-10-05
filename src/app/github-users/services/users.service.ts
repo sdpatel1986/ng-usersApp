@@ -11,8 +11,8 @@ import { Repository } from '../models/repository';
   providedIn: 'root'
 })
 export class UsersService {
-  private baseUrl = environment.apiUrl
-  private usersSubject = new BehaviorSubject([]);
+  private baseUrl: string = environment.apiUrl
+  private usersSubject: BehaviorSubject<any[]> = new BehaviorSubject([]);
   get LoadedUsers() {
     return this.usersSubject.value;
   }
