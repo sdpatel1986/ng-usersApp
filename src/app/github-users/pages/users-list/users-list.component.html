@@ -11,7 +11,7 @@
                 <div class="d-flex flex-column" *ngIf="filteredUsers$ | async as filteredUsers">
                     <div><span class="float-right">Users # {{filteredUsers.length}}</span></div>
                     <div class="p-2 d-flex flex-row flex-wrap">
-                        <cdk-virtual-scroll-viewport [itemSize]="10" class="v-scroll">
+                        <cdk-virtual-scroll-viewport [itemSize]="50" class="v-scroll">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -22,8 +22,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *cdkVirtualFor="let user of filteredUsers">
-                                        <th scope="row">{{user.id}}</th>
+                                    <tr *cdkVirtualFor="let user of filteredUsers; let i=index">
+                                        <th scope="row">{{i+1}}</th>
                                         <td><img [src]="user.avatar_url" class="circImage" alt="..."></td>
                                         <td>{{user.login}}</td>
                                         <td>

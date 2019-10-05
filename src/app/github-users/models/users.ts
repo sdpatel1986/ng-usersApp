@@ -14,7 +14,7 @@ export const getUsersByCount = (requiredNoOfUsers: number, getUsersFunc: getUser
   source.pipe(mergeMap((cr: User[]) => {
     let currentItemsLength = cr.length;
     if (currentItemsLength < requiredNoOfUsers) {
-      return getUsersFunc(cr[currentItemsLength - 1].id, requiredNoOfUsers - currentItemsLength < 100 ?
+      return getUsersFunc(currentItemsLength - 1, requiredNoOfUsers - currentItemsLength < 100 ?
         requiredNoOfUsers - currentItemsLength : 100).pipe(map(nr => cr.concat(nr)))
         .pipe(getUsersByCount(requiredNoOfUsers, getUsersFunc));
     } else {
